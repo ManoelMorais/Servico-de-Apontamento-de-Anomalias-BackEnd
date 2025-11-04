@@ -20,15 +20,15 @@ import java.util.Collections;
 public class SecurityFilter extends OncePerRequestFilter{
 
     @Autowired
-    tokenService TokenService;
+    private TokenService tokenService ;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var token = this.recoverToken(request);
-        var loginToken = TokenService.validateToken(token);
+        var loginToken = tokenService.validateToken(token);
 
         if(loginToken != null){
             User user = userRepository.findByDrtUsuario(Integer.parseInt(loginToken)).orElseThrow(() -> new RuntimeException("User Not Found"));

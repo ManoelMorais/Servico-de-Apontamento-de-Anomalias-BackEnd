@@ -4,7 +4,7 @@ import ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.domain.u
 import ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.dto.RegisterRequestDTO;
 import ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.dto.ResponseDTO;
 import ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.dto.loginRequestDTO;
-import ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.infra.security.tokenService;
+import ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.infra.security.TokenService;
 import ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class AuthController {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final tokenService tokenService;
+    private final TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody loginRequestDTO body) {
