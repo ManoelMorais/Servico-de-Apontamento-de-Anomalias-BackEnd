@@ -2,6 +2,7 @@ package ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.infra.s
 
 import ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.domain.user.User;
 import ApontamentoAnomalias.example.Servico.de.Apontamento.de.Anomalias.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,11 +11,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+@AllArgsConstructor
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
