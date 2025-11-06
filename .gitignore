@@ -18,10 +18,6 @@ out/
 logs/
 tmp/
 
-application.properties
-application-dev.properties
-application-prod.properties
-application-test.properties
 .env
 
 ### STS ###
