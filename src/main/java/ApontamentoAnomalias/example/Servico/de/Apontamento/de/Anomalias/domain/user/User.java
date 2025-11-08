@@ -20,5 +20,6 @@ public class User {
     private int drtUsuario;
     private String nomeUsuario;
     private String senhaUsuario;
+    private String cargoUsuario;
 
 }
