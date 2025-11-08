@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,12 +23,23 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
 
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody loginRequestDTO body) {
         User user = this.userRepository.findByDrtUsuario(body.drtUsuario()).orElseThrow(() -> new RuntimeException("User not found"));
         if (passwordEncoder.matches(body.senhaUsuario(), user.getSenhaUsuario())) {
             String token = tokenService.generateToken(user);
-            return ResponseEntity.ok(new ResponseDTO(user.getDrtUsuario(), token));
+            return ResponseEntity.ok(
+                    new ResponseDTO(
+                            user.getDrtUsuario(),
+                            token,
+                            user.getNomeUsuario(),
+                            user.getCargoUsuario()
+                    ));
         }
         return ResponseEntity.badRequest().build();
     }
@@ -41,10 +53,27 @@ public class AuthController {
             newUser.setSenhaUsuario(passwordEncoder.encode(body.password()));
             newUser.setDrtUsuario(body.drt());
             newUser.setNomeUsuario(body.name());
+            newUser.setCargoUsuario(body.cargo());
             this.userRepository.save(newUser);
 
             String token = this.tokenService.generateToken(newUser);
-            return ResponseEntity.ok(new ResponseDTO(newUser.getDrtUsuario(), token));
+            return ResponseEntity.ok(
+                    new ResponseDTO(
+                            newUser.getDrtUsuario(),
+                            token,
+                            newUser.getNomeUsuario(),
+                            newUser.getCargoUsuario()
+                    ));
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @DeleteMapping("/user/{drt}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("drt") Integer drt){
+        Optional<User> user = this.userRepository.findByDrtUsuario(drt);
+        if(user.isPresent()){
+            this.userRepository.delete(user.get());
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().build();
     }
