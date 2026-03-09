@@ -97,7 +97,7 @@ A API estará disponível em `http://localhost:8080`
 
 A aplicação está hospedada em produção na plataforma **Koyeb**.
 
-> Frontend disponível em: [Servico-de-Apontamento-de-Anomalias-FrontEnd](https://github.com/manoelalmorais/Servico-de-Apontamento-de-Anomalias-FrontEnd)
+> Frontend disponível em: [Servico-de-Apontamento-de-Anomalias-FrontEnd]([https://github.com/manoelalmorais/Servico-de-Apontamento-de-Anomalias-FrontEnd](https://github.com/ManoelMorais/Servico-de-Apontamento-de-Anomalias-FrontEnd))
 
 ---
 
@@ -222,7 +222,7 @@ The API will be available at `http://localhost:8080`
 
 The application is hosted in production on **Koyeb**.
 
-> Frontend repository: [Servico-de-Apontamento-de-Anomalias-FrontEnd](https://github.com/manoelalmorais/Servico-de-Apontamento-de-Anomalias-FrontEnd)
+> Frontend repository: [Servico-de-Apontamento-de-Anomalias-FrontEnd]([https://github.com/manoelalmorais/Servico-de-Apontamento-de-Anomalias-FrontEnd](https://github.com/ManoelMorais/Servico-de-Apontamento-de-Anomalias-FrontEnd))
 
 ---
 
